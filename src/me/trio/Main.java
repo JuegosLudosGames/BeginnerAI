@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -21,6 +22,7 @@ public class Main extends BasicGame {
 	private static final String NAME = "AiProject";
 	private static final int SCREENHEIGHT = 1000;
 	private static final int SCREENWIDTH = 1000;
+	private static final Color Color = null;
 	
 	private static ArrayList<GameObject> obj;
 
@@ -41,7 +43,7 @@ public class Main extends BasicGame {
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		
 		//render process
-		
+		g.setBackground(Color.blue);
 		//late update
 		for (GameObject o : obj) {
 			o.lateUpdate();
@@ -59,8 +61,9 @@ public class Main extends BasicGame {
 		obj = new ArrayList<>();
 		
 		//define Gameobjects here
+		Wall w = new Wall();
 		//do obj.add(<object data here>)
-		
+		obj.add(w);
 		
 		
 		//end of definitions
