@@ -41,6 +41,9 @@ public class Main extends BasicGame {
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		
 		//render process
+		for (GameObject o : obj) {
+			o.onRender(g);
+		}
 		
 		//late update
 		for (GameObject o : obj) {
