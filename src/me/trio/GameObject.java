@@ -1,6 +1,6 @@
 //when making method, do not add curly brackets, there is no body use a semi colon instead
 //cannot make variables in interface
-package beginnerai;
+package me.trio;
 
 /**
  * GameObject
