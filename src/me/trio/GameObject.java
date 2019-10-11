@@ -2,6 +2,8 @@
 //cannot make variables in interface
 package me.trio;
 
+import org.newdawn.slick.Graphics;
+
 /**
  * GameObject
  * 
@@ -44,5 +46,11 @@ public interface GameObject {
      * stop
      */
     public void stop();
+    
+    /**
+     * onRender
+     * contains things for graphics
+     */
+    public void onRender(Graphics graphic);
     
 }//end of gameObject
