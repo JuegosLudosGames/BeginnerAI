@@ -5,6 +5,13 @@ import org.newdawn.slick.Graphics;
 
 public class Wall implements GameObject{
 
+	public Wall(Vector2D start, Vector2D end) {
+		this.start = start;
+		this.end = end;
+	}
+	
+	Vector2D start;
+	Vector2D end;
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
@@ -50,8 +57,8 @@ public class Wall implements GameObject{
 	@Override
 	public void onRender(Graphics graphic) {
 		// TODO make line.
-		
-		graphic.drawLine(100f,10f,100f,100f);
+		graphic.setColor(Color.blue);
+		graphic.drawLine(start.x,start.y,end.x,end.y);
 	}
 
 	

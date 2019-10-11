@@ -44,7 +44,7 @@ public class Main extends BasicGame {
 		
 		//render process
 
-		g.setBackground(Color.blue);
+		g.setBackground(Color.black);
 
 		for (GameObject o : obj) {
 			o.onRender(g);
@@ -67,7 +67,7 @@ public class Main extends BasicGame {
 		obj = new ArrayList<>();
 		
 		//define Gameobjects here
-		Wall w = new Wall();
+		Wall w = new Wall(new Vector2D(100f,100f),(new Vector2D(800f, 100f)));
 		//do obj.add(<object data here>)
 		obj.add(w);
 		
