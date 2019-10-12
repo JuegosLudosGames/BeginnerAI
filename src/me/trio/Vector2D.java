@@ -9,4 +9,8 @@ public class Vector2D {
 	
 	public float x;
 	public float y;
+        
+        public Vector2D cloneVector(){
+            return new Vector2D(x, y);
+        }
 }

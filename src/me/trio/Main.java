@@ -68,10 +68,18 @@ public class Main extends BasicGame {
 		
 		//define Gameobjects here
 		Wall w = new Wall(new Vector2D(100f,100f),(new Vector2D(800f, 100f)));
-                SpawnPoint s = new SpawnPoint(new Vector2D(490f, 900f));
+                SpawnPoint s = new SpawnPoint(new Vector2D(490f, 800f));
+                
+                Dot d = null;
+                Dot d2 = null;
+                d = new Dot((Vector2D) s.returnCoods().cloneVector());
+                d2 = new Dot((Vector2D) s.returnCoods().cloneVector());
+                
 		//do obj.add(<object data here>)
 		obj.add(w);
 		obj.add(s);
+                obj.add(d);
+                obj.add(d2);
 		
 		//end of definitions
 		

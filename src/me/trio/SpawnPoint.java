@@ -8,6 +8,10 @@ import org.newdawn.slick.Graphics;
  * @author hanna
  */
 public class SpawnPoint implements GameObject{
+
+    static Vector2D returnCoords() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     //coordinates of the SpawnPoint
     private Vector2D coords;
@@ -43,7 +47,6 @@ public class SpawnPoint implements GameObject{
 
     @Override
     public void onEnable() {
-        
         setEnable(true);
     }
 
@@ -60,6 +63,13 @@ public class SpawnPoint implements GameObject{
     public void onRender(Graphics graphic) {
         graphic.setColor(Color.blue);
         graphic.drawOval(coords.x, coords.y, 20, 20);
+        graphic.fillOval(coords.x + 12, coords.y + 5, 3, 3);
+        graphic.fillOval(coords.x + 4, coords.y + 5, 3, 3);
+        graphic.drawOval(coords.x + 2, coords.y + 10, 15, 1);
+    }
+    
+    public Vector2D returnCoods(){
+        return coords;
     }
     
 }//end of SpawnPoint
