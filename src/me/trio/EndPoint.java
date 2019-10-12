@@ -1,51 +1,42 @@
 package me.trio;
 
-import java.io.File;
-
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-public class Logger implements GameObject {
-	
-	private static Logger log;
-	
-	public static Logger getLogger() {
-		return log;
+public class EndPoint implements GameObject{
+
+	private Vector2D coords;
+	public EndPoint(Vector2D tempVector) {
+        coords = tempVector;
 	}
 	
-	private File logFile;
-	private File dataFile;
-
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-		String dataFolder = System.getenv("LOCALAPPDATA");
-		
-		
-		
+        earlyUpdate();
 	}
 
 	@Override
 	public void earlyUpdate() {
-		// TODO Auto-generated method stub
+		update();
 		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		lateUpdate();
 	}
 
 	@Override
 	public void lateUpdate() {
 		// TODO Auto-generated method stub
-		
+		onEnable();
 	}
 
 	@Override
 	public void onEnable() {
 		// TODO Auto-generated method stub
-		
+		setEnable(true);
 	}
 
 	@Override
@@ -59,15 +50,12 @@ public class Logger implements GameObject {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void log() {
-		
-	}
 
 	@Override
 	public void onRender(Graphics graphic) {
 		// TODO Auto-generated method stub
-		
+        graphic.setColor(Color.blue);
+        graphic.drawOval(coords.x, coords.y, 20, 20);
 	}
-	
+
 }

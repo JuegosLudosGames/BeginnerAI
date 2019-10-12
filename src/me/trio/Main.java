@@ -65,7 +65,7 @@ public class Main extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 		
 		obj = new ArrayList<>();
-		
+
 		//define Gameobjects here
 		Wall w = new Wall(new Vector2D(100f,100f),(new Vector2D(800f, 100f)));
                 SpawnPoint s = new SpawnPoint(new Vector2D(490f, 800f));
