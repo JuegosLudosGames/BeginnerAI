@@ -52,10 +52,10 @@ public class Dot implements GameObject{
         graphic.fillOval((coords.x - 10), coords.y, 5, 5);
         
         int ran = new Random().nextInt(4) + 1;
-        move(coords, ran);
+        move(ran);
     }
     
-    private void move(Vector2D coords, int ran){
+    private void move(int ran){
         switch(ran){
             case 1:{
                 up();
