@@ -1,13 +1,15 @@
 package me.trio.ai;
 
+import me.trio.Vector2D;
 
 public class Intelligence {
 	
-	private static final int MAXMOVES = 5000;
-	private static Intelligence[] entities;
+	public static final int MAXMOVES = 5000;
+	public static Intelligence[] entities;
 	
 	private MoveSet[] moves;
-	public int fitness = 0;
+	public float fitness = 0;
+	public Vector2D location = null;
 	
 	public Intelligence(MoveSet[] m) {
 		moves = m;

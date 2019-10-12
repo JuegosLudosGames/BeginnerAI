@@ -1,6 +1,7 @@
 package me.trio;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +11,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+
+import me.trio.ai.Intelligence;
+import me.trio.ai.Trainer;
 
 /**
  * Main class that houses the main method and base methods
@@ -65,22 +69,14 @@ public class Main extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 		
 		obj = new ArrayList<>();
-
-		//define Gameobjects here
-		Wall w = new Wall(new Vector2D(100f,100f),(new Vector2D(800f, 100f)));
-                SpawnPoint s = new SpawnPoint(new Vector2D(490f, 800f));
-                
-                Dot d = null;
-                Dot d2 = null;
-                d = new Dot((Vector2D) s.returnCoods().cloneVector());
-                d2 = new Dot((Vector2D) s.returnCoods().cloneVector());
-		EndPoint ept = new EndPoint(new Vector2D(490f, 99f));	
-                
+		
+		//define GameObjects here
+		Wall w = new Wall(new Vector2D(100f,500f),(new Vector2D(880f, 500f)));
+                SpawnPoint s = new SpawnPoint(new Vector2D(490f, 900f));
+                EndPoint ept = new EndPoint(new Vector2D(490f, 99f));
 		//do obj.add(<object data here>)
 		obj.add(w);
 		obj.add(s);
-                obj.add(d);
-                obj.add(d2);
 		obj.add(ept);
 		
 		//end of definitions
@@ -94,6 +90,22 @@ public class Main extends BasicGame {
 		//starts all objects
 		for (GameObject o : obj) {
 			o.start();
+		}
+		
+		
+		//temp code
+		//generates 100 random creatures
+		Intelligence.entities = new Intelligence[25];
+		Random rnd = new Random();
+		for(int x = 0; x < Intelligence.entities.length; x++) {
+			Intelligence.entities[x] = Trainer.generateRandomCreature();
+			Intelligence.entities[x].fitness = rnd.nextInt(200);
+		}
+		
+		Trainer.sortByFitness();
+		
+		for(Intelligence i : Intelligence.entities) {
+			System.out.println(i.fitness);
 		}
 		
 	}

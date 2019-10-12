@@ -49,8 +49,7 @@ public interface GameObject {
     
     /**
      * onRender
-     * contains things for graphics, like circles and lines.
-     * @param graphics 
+     * contains things for graphics
      */
     public void onRender(Graphics graphic);
     
