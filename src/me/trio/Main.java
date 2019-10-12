@@ -74,12 +74,14 @@ public class Main extends BasicGame {
                 Dot d2 = null;
                 d = new Dot((Vector2D) s.returnCoods().cloneVector());
                 d2 = new Dot((Vector2D) s.returnCoods().cloneVector());
+		EndPoint ept = new EndPoint(new Vector2D(490f, 99f));	
                 
 		//do obj.add(<object data here>)
 		obj.add(w);
 		obj.add(s);
                 obj.add(d);
                 obj.add(d2);
+		obj.add(ept);
 		
 		//end of definitions
 		
