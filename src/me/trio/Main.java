@@ -66,12 +66,14 @@ public class Main extends BasicGame {
 		
 		obj = new ArrayList<>();
 		
-		//define Gameobjects here
-		Wall w = new Wall(new Vector2D(100f,100f),(new Vector2D(800f, 100f)));
+		//define GameObjects here
+		Wall w = new Wall(new Vector2D(100f,500f),(new Vector2D(880f, 500f)));
                 SpawnPoint s = new SpawnPoint(new Vector2D(490f, 900f));
+                EndPoint ept = new EndPoint(new Vector2D(490f, 99f));
 		//do obj.add(<object data here>)
 		obj.add(w);
 		obj.add(s);
+		obj.add(ept);
 		
 		//end of definitions
 		
