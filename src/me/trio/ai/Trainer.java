@@ -53,75 +53,89 @@ public class Trainer {
 
 	private static Intelligence[] sortPartition(Intelligence[] toSort, int startPartition, int endPartition,
 			Random rnd) {
-		// select random value for pivot
-		int pivot = rnd.nextInt(endPartition - startPartition + 1) + startPartition;
-
-		// sort all greater to right, and all less to left
-		int leftCheck = startPartition;
-		int rightCheck = endPartition;
-
-		int newLeftPartition = -1;
-		int newRightPartition = -1;
-
-		boolean sorting = true;
-		outside: while (sorting) {
-			
-			
-			
-			if(leftCheck == pivot)
-				leftCheck++;
-			
-			if(rightCheck == pivot)
-				rightCheck--;
-			
-			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
-			
-			while (leftCheck == pivot || toSort[leftCheck].fitness <= toSort[pivot].fitness) {
-				leftCheck++;
-				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
-				if (leftCheck != pivot) {
-					if (leftCheck == rightCheck) {
-						newLeftPartition = leftCheck - 1;
-						newRightPartition = rightCheck;
-						break outside;
-					}
-				} 
-			}
-
-			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
-			
-			while (rightCheck == pivot || toSort[rightCheck].fitness > toSort[pivot].fitness) {
-				rightCheck--;
-				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
-				if (rightCheck != pivot) {
-					if (leftCheck == rightCheck) {
-						newLeftPartition = leftCheck;
-						newRightPartition = rightCheck + 1;
-						break outside;
-					}
-				}
-			}
-
-			Intelligence t = toSort[leftCheck];
-			toSort[leftCheck] = toSort[rightCheck];
-			toSort[rightCheck] = t;
-		}
-
-		// sort left partition
-		if ((newLeftPartition - startPartition + 1) <= 5) {
-			toSort = sortPartitionInsersion(toSort, startPartition, newLeftPartition);
-		} else {
-			toSort = sortPartition(toSort, startPartition, newLeftPartition, rnd);
-		}
-
-		// sort right partition
-		if ((endPartition - newRightPartition + 1) <= 5) {
-			toSort = sortPartitionInsersion(toSort, newRightPartition, endPartition);
-		} else {
-			toSort = sortPartition(toSort, newRightPartition, endPartition, rnd);
-		}
-
-		return toSort;
+//		// select random value for pivot
+//		int pivot = rnd.nextInt(endPartition - startPartition + 1) + startPartition;
+//
+//		// sort all greater to right, and all less to left
+//		int leftCheck = startPartition;
+//		int rightCheck = endPartition;
+//
+//		int newLeftPartition = -1;
+//		int newRightPartition = -1;
+//
+//		boolean sorting = true;
+//		outside: while (sorting) {
+//			
+//			
+//			
+//			if(leftCheck == pivot)
+//				leftCheck++;
+//			
+//			if(rightCheck == pivot)
+//				rightCheck--;
+//			
+//			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
+//			
+//			while (leftCheck == pivot || toSort[leftCheck].fitness <= toSort[pivot].fitness) {
+//				leftCheck++;
+//				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
+//				if (leftCheck != pivot) {
+//					if (leftCheck == rightCheck) {
+//						newLeftPartition = leftCheck - 1;
+//						newRightPartition = rightCheck;
+//						break outside;
+//					}
+//				} 
+//			}
+//
+//			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
+//			
+//			while (rightCheck == pivot || toSort[rightCheck].fitness > toSort[pivot].fitness) {
+//				rightCheck--;
+//				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
+//				if (rightCheck != pivot) {
+//					if (leftCheck == rightCheck) {
+//						newLeftPartition = leftCheck;
+//						newRightPartition = rightCheck + 1;
+//						break outside;
+//					}
+//				}
+//			}
+//
+//			Intelligence t = toSort[leftCheck];
+//			toSort[leftCheck] = toSort[rightCheck];
+//			toSort[rightCheck] = t;
+//		}
+//
+//		// sort left partition
+//		if ((newLeftPartition - startPartition + 1) <= 5) {
+//			toSort = sortPartitionInsersion(toSort, startPartition, newLeftPartition);
+//		} else {
+//			toSort = sortPartition(toSort, startPartition, newLeftPartition, rnd);
+//		}
+//
+//		// sort right partition
+//		if ((endPartition - newRightPartition + 1) <= 5) {
+//			toSort = sortPartitionInsersion(toSort, newRightPartition, endPartition);
+//		} else {
+//			toSort = sortPartition(toSort, newRightPartition, endPartition, rnd);
+//		}
+//
+//		return toSort;
+		
+		//get indexes
+		int high = endPartition;
+		int low = startPartition;
+		
+		//get the pivot
+		//toSort[]
+		return null;
+	}
+	
+	private static void exchange(Intelligence[] toSort, int i, int j) {
+		Intelligence temp = toSort[i];
+		toSort[i] = toSort[j];
+		toSort[j] = temp;
 	}
 
 	private static Intelligence[] sortPartitionInsersion(Intelligence[] toSort, int startPartition, int endPartition) {
