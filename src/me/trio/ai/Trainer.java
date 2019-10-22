@@ -127,9 +127,36 @@ public class Trainer {
 		int high = endPartition;
 		int low = startPartition;
 		
-		//get the pivot
-		//toSort[]
-		return null;
+		//get the pivot (middle number)
+		float pivot = toSort[low + (high - low)/2].fitness;
+		
+		while(low <= high) {
+			
+			//goes through, find a left val that is higher than pivot,
+			//find a right val that is lower than pivot,
+			//swap
+			
+			while(toSort[low].fitness < pivot)
+				low++;
+			
+			while(toSort[high].fitness > pivot) 
+				high--;
+			
+			if(low <= high) {
+				exchange(toSort, high, low);
+				low++;
+				high--;
+			}
+		}//end of while
+		
+		if(startPartition < high) 
+			toSort = sortPartition(toSort, startPartition, high, rnd);
+		if(low < endPartition)
+			toSort = sortPartition(toSort, low, endPartition, rnd);
+		
+		return toSort;
+		
+		//return null;
 	}
 	
 	private static void exchange(Intelligence[] toSort, int i, int j) {
@@ -138,23 +165,23 @@ public class Trainer {
 		toSort[j] = temp;
 	}
 
-	private static Intelligence[] sortPartitionInsersion(Intelligence[] toSort, int startPartition, int endPartition) {
-
-		for (int x = startPartition + 1; x <= endPartition; x++) {
-			for (int y = x - 1; x >= startPartition; x--) {
-
-				if (toSort[x].fitness < toSort[y].fitness) {
-					Intelligence t = toSort[x];
-					toSort[x] = toSort[y];
-					toSort[y] = t;
-				} else {
-					break;
-				}
-
-			}
-		}
-		return toSort;
-
-	}
+//	private static Intelligence[] sortPartitionInsersion(Intelligence[] toSort, int startPartition, int endPartition) {
+//
+//		for (int x = startPartition + 1; x <= endPartition; x++) {
+//			for (int y = x - 1; x >= startPartition; x--) {
+//
+//				if (toSort[x].fitness < toSort[y].fitness) {
+//					Intelligence t = toSort[x];
+//					toSort[x] = toSort[y];
+//					toSort[y] = t;
+//				} else {
+//					break;
+//				}
+//
+//			}
+//		}
+//		return toSort;
+//
+//	}
 
 }
