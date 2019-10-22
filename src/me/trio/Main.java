@@ -77,18 +77,17 @@ public class Main extends BasicGame {
                 
                  Dot d = null;
                 Dot d2 = null;
-                d = new Dot((Vector2D) s.returnCoods().cloneVector());
+                d = new Dot((Vector2D) s.returnCoords().cloneVector());
                 for(int a = 0; a < 299; a++){
-                    d2 = new Dot((Vector2D) s.returnCoods().cloneVector());
+                    d2 = new Dot((Vector2D) s.returnCoords().cloneVector());
                     obj.add(d2);
                 }
                 
-		EndPoint ept = new EndPoint(new Vector2D(490f, 99f));	
                 
 		//do obj.add(<object data here>)
 		obj.add(w);
 		obj.add(s);
-    obj.add(d);
+                obj.add(d);
 		obj.add(ept);
 		
 		//end of definitions
@@ -116,9 +115,9 @@ public class Main extends BasicGame {
 		
 		Trainer.sortByFitness();
 		
-		for(Intelligence i : Intelligence.entities) {
+		/*for(Intelligence i : Intelligence.entities) {
 			System.out.println(i.fitness);
-		}
+		}*/
 		
 	}
 	

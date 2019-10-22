@@ -62,4 +62,8 @@ public class SpawnPoint implements GameObject{
         graphic.drawOval(coords.x, coords.y, 20, 20);
     }
     
+    public Vector2D returnCoords(){
+        return coords;
+    }
+    
 }//end of SpawnPoint

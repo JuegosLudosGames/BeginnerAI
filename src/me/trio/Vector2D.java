@@ -19,4 +19,8 @@ public class Vector2D {
 	public static float distance(Vector2D start, Vector2D end) {
 		return (float)Math.sqrt( Math.pow( end.x - start.x, 2 ) + Math.pow( end.y - start.y, 2 ));
 	}
+        
+        public Vector2D cloneVector(){
+            return new Vector2D(x, y);
+        }
 }
