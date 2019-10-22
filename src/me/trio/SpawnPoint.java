@@ -67,4 +67,8 @@ public class SpawnPoint implements GameObject{
 		return coords;
 	}
     
+    public Vector2D returnCoords(){
+        return coords;
+    }
+    
 }//end of SpawnPoint

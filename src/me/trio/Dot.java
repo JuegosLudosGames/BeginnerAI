@@ -56,41 +56,44 @@ public class Dot implements GameObject{
     }
     
     private void move(int ran){
+        
+        int m = new Random().nextInt(5) + 1;
+        
         switch(ran){
             case 1:{
-                up();
+                up(m);
                 break;
             }
             case 2:{
-                down();
+                down(m);
                 break;
             }
             case 3:{
-                left();
+                left(m);
                 break;
             }
             case 4:{
-                right();
+                right(m);
                 break;
             }
         }
         
     }
     
-    private void up(){
-        coords.y--;
+    private void up(int m){
+        coords.y -= m;
     }
     
-    private void down(){
-        coords.y++;
+    private void down(int m){
+        coords.y += m;
     }
     
-    private void left(){
-        coords.x--;
+    private void left(int m){
+        coords.x -= m;
     }
     
-    private void right(){
-        coords.x++;
+    private void right(int m){
+        coords.x += m;
     }
     
     /**
