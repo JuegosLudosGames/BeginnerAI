@@ -155,6 +155,20 @@ public class Main extends BasicGame {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
 		}
 		
-	}
+	}//end of main
+        
+        /**
+         * removeGameObject
+         * removes the GameObject from the array list
+         * @param toRemove what the undesirable GameObject is
+         */
+        public void removeGameObject(GameObject toRemove){
+            for(int a = 0; a < obj.size(); a++){
+                if(obj.get(a) == toRemove){
+                    obj.remove(a);
+                    return;
+                }
+            }
+        }
 
-}
+}//end of class

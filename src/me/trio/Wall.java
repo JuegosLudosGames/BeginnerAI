@@ -61,6 +61,4 @@ public class Wall implements GameObject{
 		graphic.drawLine(start.x,start.y,end.x,end.y);
 	}
 
-	
-	
 }
