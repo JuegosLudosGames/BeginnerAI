@@ -4,24 +4,46 @@ import java.util.Random;
 
 import me.trio.Vector2D;
 
+/**
+ * The class the trains the AI
+ * @author Kyle
+ *
+ */
 public class Trainer {
 
+	/**
+	 * Calculates the fitness score for each AI
+	 * @param start the vector of the start point
+	 * @param end the vector of the end point
+	 */
 	public static void calculateAllFitness(Vector2D start, Vector2D end) {
+		//the value that is considered 0 fitness
 		float ZeroDistance = Vector2D.distance(start, end);
 
+		//goes through every AI
 		for (Intelligence in : Intelligence.entities) {
-
+			
+			//calculates distance
 			float inDistance = Vector2D.distance(in.location, end);
+			
+			//sets fitness
 			in.fitness = ZeroDistance - inDistance;
 		}
 	}
-
+	
+	/**
+	 * Purges half of the AI population from index length / 2 to end
+	 */
 	public static void purgeHalfAndRegenerateRandom() {
 		for (int x = (Intelligence.entities.length / 2) - 1; x < Intelligence.entities.length; x++) {
 			Intelligence.entities[x] = null;
 		}
 	}
-
+	
+	/**
+	 * Generates a random AI
+	 * @return the generated aI
+	 */
 	public static Intelligence generateRandomCreature() {
 		Random rnd = new Random();
 		MoveSet[] moves = new MoveSet[Intelligence.MAXMOVES];
@@ -32,6 +54,12 @@ public class Trainer {
 		return new Intelligence(moves);
 	}
 
+	/**
+	 * Generates a random creature via mutation of another creature
+	 * @param i the creature to be mutated
+	 * @param mutationChance percentage chance of a mutation for all moves
+	 * @return the newly generated creature
+	 */
 	public static Intelligence generateRandomCreature(Intelligence i, int mutationChance) {
 		Random rnd = new Random();
 		MoveSet[] moves = i.getMoveset().clone();
@@ -45,83 +73,21 @@ public class Trainer {
 
 		return new Intelligence(moves);
 	}
-
+	
+	/**
+	 * Sorts the Ai by their fitness, highest to lowest
+	 */
 	public static void sortByFitness() {
 		// quicksort
-		Intelligence.entities = sortPartition(Intelligence.entities, 0, Intelligence.entities.length - 1, new Random());
+		Intelligence.entities = sortPartition(Intelligence.entities, 0, Intelligence.entities.length - 1);
 	}
 
-	private static Intelligence[] sortPartition(Intelligence[] toSort, int startPartition, int endPartition,
-			Random rnd) {
-//		// select random value for pivot
-//		int pivot = rnd.nextInt(endPartition - startPartition + 1) + startPartition;
-//
-//		// sort all greater to right, and all less to left
-//		int leftCheck = startPartition;
-//		int rightCheck = endPartition;
-//
-//		int newLeftPartition = -1;
-//		int newRightPartition = -1;
-//
-//		boolean sorting = true;
-//		outside: while (sorting) {
-//			
-//			
-//			
-//			if(leftCheck == pivot)
-//				leftCheck++;
-//			
-//			if(rightCheck == pivot)
-//				rightCheck--;
-//			
-//			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
-//			
-//			while (leftCheck == pivot || toSort[leftCheck].fitness <= toSort[pivot].fitness) {
-//				leftCheck++;
-//				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
-//				if (leftCheck != pivot) {
-//					if (leftCheck == rightCheck) {
-//						newLeftPartition = leftCheck - 1;
-//						newRightPartition = rightCheck;
-//						break outside;
-//					}
-//				} 
-//			}
-//
-//			System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot);
-//			
-//			while (rightCheck == pivot || toSort[rightCheck].fitness > toSort[pivot].fitness) {
-//				rightCheck--;
-//				System.out.println("Left " + leftCheck + " Right " + rightCheck + " Pivot " + pivot + " Start " + startPartition + " end " + endPartition);
-//				if (rightCheck != pivot) {
-//					if (leftCheck == rightCheck) {
-//						newLeftPartition = leftCheck;
-//						newRightPartition = rightCheck + 1;
-//						break outside;
-//					}
-//				}
-//			}
-//
-//			Intelligence t = toSort[leftCheck];
-//			toSort[leftCheck] = toSort[rightCheck];
-//			toSort[rightCheck] = t;
-//		}
-//
-//		// sort left partition
-//		if ((newLeftPartition - startPartition + 1) <= 5) {
-//			toSort = sortPartitionInsersion(toSort, startPartition, newLeftPartition);
-//		} else {
-//			toSort = sortPartition(toSort, startPartition, newLeftPartition, rnd);
-//		}
-//
-//		// sort right partition
-//		if ((endPartition - newRightPartition + 1) <= 5) {
-//			toSort = sortPartitionInsersion(toSort, newRightPartition, endPartition);
-//		} else {
-//			toSort = sortPartition(toSort, newRightPartition, endPartition, rnd);
-//		}
-//
-//		return toSort;
+	/*Sorts partition from a start point to end point
+	 * toSort the array to sort
+	 * startPartition the low end (left) 
+	 * endPartition the high end (right) 
+	 */
+	private static Intelligence[] sortPartition(Intelligence[] toSort, int startPartition, int endPartition) {
 		
 		//get indexes
 		int high = endPartition;
@@ -136,10 +102,10 @@ public class Trainer {
 			//find a right val that is lower than pivot,
 			//swap
 			
-			while(toSort[low].fitness < pivot)
+			while(toSort[low].fitness > pivot)
 				low++;
 			
-			while(toSort[high].fitness > pivot) 
+			while(toSort[high].fitness < pivot) 
 				high--;
 			
 			if(low <= high) {
@@ -150,38 +116,25 @@ public class Trainer {
 		}//end of while
 		
 		if(startPartition < high) 
-			toSort = sortPartition(toSort, startPartition, high, rnd);
+			toSort = sortPartition(toSort, startPartition, high);
 		if(low < endPartition)
-			toSort = sortPartition(toSort, low, endPartition, rnd);
+			toSort = sortPartition(toSort, low, endPartition);
 		
 		return toSort;
 		
 		//return null;
 	}
 	
+	/*
+	 * swaps 2 elements in the array
+	 * toSort the array to swap elements
+	 * i 1 index
+	 * j another index
+	 */
 	private static void exchange(Intelligence[] toSort, int i, int j) {
 		Intelligence temp = toSort[i];
 		toSort[i] = toSort[j];
 		toSort[j] = temp;
 	}
-
-//	private static Intelligence[] sortPartitionInsersion(Intelligence[] toSort, int startPartition, int endPartition) {
-//
-//		for (int x = startPartition + 1; x <= endPartition; x++) {
-//			for (int y = x - 1; x >= startPartition; x--) {
-//
-//				if (toSort[x].fitness < toSort[y].fitness) {
-//					Intelligence t = toSort[x];
-//					toSort[x] = toSort[y];
-//					toSort[y] = t;
-//				} else {
-//					break;
-//				}
-//
-//			}
-//		}
-//		return toSort;
-//
-//	}
 
 }

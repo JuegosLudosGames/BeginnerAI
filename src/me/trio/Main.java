@@ -119,19 +119,11 @@ public class Main extends BasicGame {
 		}
 
 		Trainer.sortByFitness();
-<<<<<<< HEAD
 
 		for (Intelligence i : Intelligence.entities) {
 			System.out.println(i.fitness);
 		}
-
-=======
 		
-		/*for(Intelligence i : Intelligence.entities) {
-			System.out.println(i.fitness);
-		}*/
-		
->>>>>>> f17289c786e0cb63f6d82622301c3c105351d4ef
 	}
 
 	/**
