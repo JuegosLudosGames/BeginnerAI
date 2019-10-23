@@ -10,6 +10,7 @@ public class Intelligence {
 	private MoveSet[] moves;
 	public float fitness = 0;
 	public Vector2D location = null;
+	public boolean isDead = false;
 	
 	public Intelligence(MoveSet[] m) {
 		moves = m;

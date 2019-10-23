@@ -2,6 +2,7 @@ package me.trio.ai;
 
 import java.util.Random;
 
+import me.trio.AILogger;
 import me.trio.Vector2D;
 
 /**
@@ -10,6 +11,16 @@ import me.trio.Vector2D;
  *
  */
 public class Trainer {
+	
+	public static final int MUTATIONCHANCE = 1;
+	
+	public static int currentGeneration = 1;
+	
+	public static float HighestPrevGen = 0;
+	public static float LowestPrevGen = 0;
+	public static float MedianPrevGen = 0;
+	public static float averagePrevGen = 0;
+	
 
 	/**
 	 * Calculates the fitness score for each AI
@@ -19,6 +30,7 @@ public class Trainer {
 	public static void calculateAllFitness(Vector2D start, Vector2D end) {
 		//the value that is considered 0 fitness
 		float ZeroDistance = Vector2D.distance(start, end);
+		averagePrevGen = 0;
 
 		//goes through every AI
 		for (Intelligence in : Intelligence.entities) {
@@ -26,18 +38,44 @@ public class Trainer {
 			//calculates distance
 			float inDistance = Vector2D.distance(in.location, end);
 			
-			//sets fitness
-			in.fitness = ZeroDistance - inDistance;
+			//checks if dead
+			if(in.isDead)
+				//set fitness to 0
+				in.fitness = 0;
+			else
+				//sets fitness
+				in.fitness = ZeroDistance - inDistance;
+			
+			averagePrevGen += in.fitness;
+			
+			//unkill
+			in.isDead = false;
 		}
+		
+		//calculates full average
+		averagePrevGen = averagePrevGen / Intelligence.entities.length;
 	}
 	
 	/**
-	 * Purges half of the AI population from index length / 2 to end
+	 * Purges half of the AI population from index length / 2 to end and regenerates 
+	 * the population
 	 */
 	public static void purgeHalfAndRegenerateRandom() {
+		
+		//sets prev generation info
+		HighestPrevGen = Intelligence.entities[0].fitness;
+		LowestPrevGen = Intelligence.entities[Intelligence.entities.length - 1].fitness;
+		MedianPrevGen = Intelligence.entities[Intelligence.entities.length / 2].fitness;
+		
+		//logs
+		AILogger.getLogger().write(currentGeneration, LowestPrevGen, MedianPrevGen, HighestPrevGen, averagePrevGen);
+		
+		int y = 0;
 		for (int x = (Intelligence.entities.length / 2) - 1; x < Intelligence.entities.length; x++) {
-			Intelligence.entities[x] = null;
+			Intelligence.entities[x] = generateRandomCreature(Intelligence.entities[y], MUTATIONCHANCE);
+			y++;
 		}
+		currentGeneration++;
 	}
 	
 	/**
