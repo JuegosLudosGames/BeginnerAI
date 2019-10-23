@@ -61,6 +61,11 @@ public class SpawnPoint implements GameObject{
         graphic.setColor(Color.blue);
         graphic.drawOval(coords.x, coords.y, 20, 20);
     }
+
+	public Vector2D returnCoods() {
+		// TODO Auto-generated method stub
+		return coords;
+	}
     
     public Vector2D returnCoords(){
         return coords;
