@@ -77,8 +77,12 @@ public class Main extends BasicGame {
 		obj = new ArrayList<>();
 
 		// define GameObjects here
-		Wall w = new Wall(new Vector2D(100f, 500f), (new Vector2D(880f, 500f)));
-		SpawnPoint s = new SpawnPoint(new Vector2D(490f, 900f));
+		Wall w = new Wall(new Vector2D(100f, 400f), (new Vector2D(880f, 400f)));
+                Wall top = new Wall(new Vector2D(0f, 0f), (new Vector2D(1000f, 0f)));
+                Wall bottom = new Wall(new Vector2D(0f, 599f), (new Vector2D(999f, 599f)));
+                Wall left = new Wall(new Vector2D(0f, 0f), (new Vector2D(0f, 999f)));
+                Wall right = new Wall(new Vector2D(999f, 0f), (new Vector2D(999f, 599f)));
+		SpawnPoint s = new SpawnPoint(new Vector2D(490f, 550f));
 		EndPoint ept = new EndPoint(new Vector2D(490f, 99f));
 
 		Dot d = null;
@@ -93,6 +97,10 @@ public class Main extends BasicGame {
 
 		// do obj.add(<object data here>)
 		obj.add(w);
+                obj.add(top);
+                obj.add(bottom);
+                obj.add(left);
+                obj.add(right);
 		obj.add(s);
 		obj.add(d);
 		obj.add(ept);
