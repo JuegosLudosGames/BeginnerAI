@@ -50,6 +50,7 @@ public interface GameObject {
     /**
      * onRender
      * contains things for graphics
+     * @param graphic the current graphic context
      */
     public void onRender(Graphics graphic);
     

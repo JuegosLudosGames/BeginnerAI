@@ -24,8 +24,9 @@ import me.trio.ai.Trainer;
 public class Main extends BasicGame {
 
 	private static final String NAME = "AiProject";
-	private static final int SCREENHEIGHT = 1000;
+	private static final int SCREENHEIGHT = 600;
 	private static final int SCREENWIDTH = 1000;
+	private static final int FRAMERATE = 60;
 	private static final Color Color = null;
 
 	private static ArrayList<GameObject> obj;
@@ -33,7 +34,7 @@ public class Main extends BasicGame {
 	/**
 	 * Constructor for Class that pushes into BasicGame Constructor
 	 * 
-	 * @param name
+	 * @param name the name of the game
 	 */
 	public Main(String name) {
 		super(name);
@@ -44,7 +45,7 @@ public class Main extends BasicGame {
 	 * 
 	 * @param container
 	 *            the container which holds the game
-	 * @param g
+	 * @param g the current graphic context
 	 */
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
@@ -131,7 +132,7 @@ public class Main extends BasicGame {
 	 * 
 	 * @param container
 	 *            the game container
-	 * @param delta
+	 * @param delta the time delta of the frame
 	 */
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
@@ -155,7 +156,8 @@ public class Main extends BasicGame {
 		try {
 
 			AppGameContainer gc = new AppGameContainer(new Main(NAME));
-			gc.setDisplayMode(SCREENHEIGHT, SCREENWIDTH, false);
+			gc.setDisplayMode(SCREENWIDTH, SCREENHEIGHT, false);
+			gc.setTargetFrameRate(FRAMERATE);
 			gc.start();
 
 		} catch (SlickException e) {

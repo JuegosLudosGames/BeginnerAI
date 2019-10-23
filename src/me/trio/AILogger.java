@@ -10,6 +10,7 @@ public class AILogger implements GameObject {
 	
 	/**
 	 * Gets the current logger
+	 * @return returns the current logger
 	 */
 	public static AILogger getLogger() {
 		return log;
