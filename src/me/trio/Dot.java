@@ -5,7 +5,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 /**
- *
+ * Contains the information to make a dot game object.
+ * This object moves randomly.
  * @author hanna
  */
 public class Dot implements GameObject{

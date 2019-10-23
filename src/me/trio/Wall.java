@@ -57,6 +57,7 @@ public class Wall implements GameObject{
 	@Override
 	public void onRender(Graphics graphic) {
 		// TODO make line.
+                graphic.setLineWidth(3);
 		graphic.setColor(Color.blue);
 		graphic.drawLine(start.x,start.y,end.x,end.y);
 	}
